@@ -1,10 +1,12 @@
 package com.restapi.restapi.dao;
 
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-@Repository
-public interface HospitalRepo {
-    
-    public String getHospitalList();
+import com.restapi.restapi.modal.HospitalModal;
+
+
+public interface HospitalRepo{
+
+    public List<HospitalModal> getHospitalModalsList();
 
 }
