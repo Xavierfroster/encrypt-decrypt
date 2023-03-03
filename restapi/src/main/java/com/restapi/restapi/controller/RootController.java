@@ -1,34 +1,39 @@
 package com.restapi.restapi.controller;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.restapi.restapi.modal.HospitalModal;
+import com.restapi.restapi.httpresponse.HttpResponses;
 import com.restapi.restapi.services.Service;
 
 @RestController
 public class RootController {
-    
+
     @Autowired
     private Service service;
 
-    @GetMapping("/home")
-    public String test(){
+    @Autowired
+    private HttpResponses httpResponses;
 
-        return "Test Method";
+    @GetMapping("/home")
+    public String test() {
+        String testmsg = "This is Test Method";
+        return httpResponses.httpResponses(testmsg);
 
     }
 
-    @GetMapping("/name")
-    public ResponseEntity<List<HospitalModal>> getAllHospitalsName(){
-        List<HospitalModal> list = service.getAllHospitals();
-        if(list.size()<=0){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    @GetMapping(value = "/name", produces = "application/json")
+    public String getAllHospitalsName() {
+        // System.out.println(ResponseEntity.status();
+        String list = "";
+        try {
+            list = service.getAllHospitals();
+            return httpResponses.httpResponses(list);
+        } catch (Exception e) {
+            // TODO: handle exception
+            return httpResponses.httpResponses("Something Went Wrong", list, (int) HttpStatus.NOT_FOUND.value()); 
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(list);
     }
 
 }
