@@ -49,7 +49,8 @@ public class encryptDecrypt {
             return "";
         }
 
-    } public String decrypt(String list, final String secret) {
+    } 
+    public String decrypt(String list, final String secret) {
 
         try {
             setKey(secret);
