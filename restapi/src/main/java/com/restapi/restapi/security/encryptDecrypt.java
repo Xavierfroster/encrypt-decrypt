@@ -3,14 +3,9 @@ package com.restapi.restapi.security;
 import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.Base64;
-import java.util.List;
-
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-
 import org.springframework.stereotype.Component;
-
-import com.restapi.restapi.modal.HospitalModal;
 
 @Component
 public class encryptDecrypt {
@@ -56,9 +51,12 @@ public class encryptDecrypt {
             setKey(secret);
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            return Base64.getDecoder().decode(cipher.doFinal(list.toString().getBytes("UTF-8"))).toString();
+            // byte [] decodeStr = Base64.getDecoder().decode(list.toString().getBytes());
+            // return cipher.doFinal(decodeStr).toString();
+            return new String(cipher.doFinal(Base64.getDecoder().decode(list)));
         } catch (Exception e) {
-            System.out.println("Error While Encryption");
+            System.out.println("Error While Decryption");
+            System.out.println(e.getMessage());
             return "";
         }
 

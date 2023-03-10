@@ -11,29 +11,12 @@ import com.restapi.restapi.security.encryptDecrypt;
 
 @Component
 public class Service {
-    
-    @Autowired
-    private HospitalRepo hospitalRepo;
 
     @Autowired
     private encryptDecrypt eDecrypt;
 
-    public String getAllHospitals() throws Exception{
-        
-        final String secretKey = "admin";
-
-        List<HospitalModal> list = this.hospitalRepo.getHospitalModalsList();
-        System.out.println("=====================ORIGINAL DATA=======================");
-        System.out.println(list);
-        System.out.println("=========================================================");
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println(eDecrypt.encrypt(list.toString(), secretKey));
-        // return list.toString();
-        return eDecrypt.encrypt(list.toString(), secretKey);
-        // throw new Exception("jhasdfui");
-    }
+    public String getAllHospitals(){
+        return null;
+  }
 
 }
