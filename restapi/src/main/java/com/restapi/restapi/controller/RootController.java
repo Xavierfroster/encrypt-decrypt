@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.restapi.restapi.httpresponse.HttpResponses;
 import com.restapi.restapi.security.EncryptDecryptHelper;
-import com.restapi.restapi.services.Service;
 
 @RestController
 public class RootController {
